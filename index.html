@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+<link rel="shortcut icon" href="ubuntu.png" type="image/png">
+        <title>Ubunu VS Windows</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="cssKN.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="divAudio"></div>
+        <input class="KN" type="image" id="title" name="title" src="title.png" >
+            <input  class="KN" data-title="RESTART" type="image" id="restart" name="restart" src="refresh.png" onclick="location.reload()">
+        <form target="myIFR">
+        
+            <input  class="KN" type="image" id="btn1" name="btn1" src="quest.png"   onclick="push(this)" >
+            <input class="KN" type="image" id="btn2" name="btn2" src="quest.png" onclick="push(this)" >
+            <input class="KN" type="image" id="btn3" name="btn3"  src="quest.png" onclick="push(this)"><br>
+            <input class="KN" type="image" id="btn4" name="btn4" src="quest.png" onclick="push(this)">
+            <input class="KN" type="image" id="btn5" name="btn5" src="quest.png" onclick="push(this)">
+            <input class="KN" type="image" id="btn6" name="btn6" src="quest.png" onclick="push(this)"><br>
+            <input class="KN" type="image" id="btn7" name="btn7"  src="quest.png" onclick="push(this)">
+            <input class="KN" type="image" id="btn8" name="btn8" src="quest.png"  onclick="push(this)">
+            <input class="KN" type="image" id="btn9" name="btn9"  src="quest.png" onclick="push(this)">
+        </form>
+        
+<iframe name="myIFR" style="display: none"></iframe>
+        
+/*функция логики*/
+
+        <script type="text/javascript" >
+            var ubuntuW = false;
+            var a = [0,0,0,0,0,0,0,0,0];//массив состояний
+            var id ;
+            var countStep =0;
+            //функция нажатия 
+            function push(objct){
+                   
+                if(document.getElementById(objct.id).name==="clouse"){}else{
+                     wav();
+                document.getElementById(objct.id).name="clouse";
+                document.getElementById(objct.id).src="ubuntu.png";
+                id=objct.id;
+                countStep++;
+                //заполняем массив значениями,занято или свободно поле
+                //1-занято 0-свободно 2-занято ИИ
+                //
+                switch(id){
+                    case "btn1": a[0]=1;break;
+                    case "btn2": a[1]=1;break;
+                    case "btn3": a[2]=1;break;
+                    case "btn4": a[3]=1;break;
+                    case "btn5": a[4]=1;break;
+                    case "btn6": a[5]=1;break;
+                    case "btn7": a[6]=1;break;
+                    case "btn8": a[7]=1;break;
+                    case "btn9": a[8]=1;break;
+                        default :alert("Что то пошло не так");break;
+                }
+                 //ecли три вряд заняты значит победа
+                if(a[0]===1&&a[1]===1&&a[2]===1){ubuntuWin();ubuntuW=true;}
+                if(a[3]===1&&a[4]===1&&a[5]===1){ubuntuWin();ubuntuW=true;}
+                if(a[6]===1&&a[7]===1&&a[8]===1){ubuntuWin();ubuntuW=true;}
+                if(a[0]===1&&a[3]===1&&a[6]===1){ubuntuWin();ubuntuW=true;}
+                if(a[1]===1&&a[4]===1&&a[7]===1){ubuntuWin();ubuntuW=true;}
+                if(a[2]===1&&a[5]===1&&a[8]===1){ubuntuWin();ubuntuW=true;}
+                if(a[0]===1&&a[4]===1&&a[8]===1){ubuntuWin();ubuntuW=true;}
+                if(a[2]===1&&a[4]===1&&a[6]===1){ubuntuWin();ubuntuW=true;}
+                
+                //если убунту не выйграл то виндовс ходит
+                if(ubuntuW===false){
+               //логика ИИ
+               //Первый ход попытка занять середину
+               if(a[4]===0){
+                   document.getElementById("btn5").name="clouse";
+                   document.getElementById("btn5").src="windows.png";a[4]=2;}else{
+                   
+                   
+                   
+              
+                while(countStep<5){
+                    //Все IF ниже проверяют выйгрышные позиции
+                    
+                  if(a[0]===2&&a[1]===2&&a[2]===0){document.getElementById("btn3").src="windows.png";
+                      windowsWin();a[2]=2;break;}
+                     if(a[3]===2&&a[4]===2&&a[5]===0){document.getElementById("btn6").src="windows.png";
+                         windowsWin();a[5]=2;break;}
+                     if(a[6]===2&&a[7]===2&&a[8]===0){document.getElementById("btn9").src="windows.png";
+                         windowsWin();a[8]=2;break;}
+                     
+                     if(a[1]===2&&a[2]===2&&a[0]===0){document.getElementById("btn1").src="windows.png";
+                         windowsWin();a[0]=2;break;}
+                     if(a[4]===2&&a[5]===2&&a[3]===0){document.getElementById("btn4").src="windows.png";
+                         windowsWin();a[3]=2;break;}
+                     if(a[8]===2&&a[7]===2&&a[6]===0){document.getElementById("btn7").src="windows.png";
+                         windowsWin();a[6]=2;break;}
+                     
+                     if(a[0]===2&&a[3]===2&&a[6]===0){document.getElementById("btn7").src="windows.png";
+                         windowsWin();a[6]=2;break;}
+                     if(a[1]===2&&a[4]===2&&a[7]===0){document.getElementById("btn8").src="windows.png";
+                         windowsWin();a[7]=2;break;}
+                     if(a[2]===2&&a[5]===2&&a[8]===0){document.getElementById("btn9").src="windows.png";
+                         windowsWin();a[8]=2;break;}
+                     
+                     
+                     if(a[0]===0&&a[3]===2&&a[6]===2){document.getElementById("btn1").src="windows.png";
+                         windowsWin();a[0]=2;break;}
+                     if(a[1]===0&&a[4]===2&&a[7]===2){document.getElementById("btn2").src="windows.png";
+                         windowsWin();a[1]=2;break;}
+                     if(a[2]===0&&a[5]===2&&a[8]===2){document.getElementById("btn3").src="windows.png";
+                         windowsWin();a[2]=2;break;}
+                     
+                     
+                     if(a[0]===2&&a[4]===2&&a[8]===0){document.getElementById("btn9").src="windows.png";
+                         windowsWin();a[8]=2;break;}
+                     if(a[0]===0&&a[4]===2&&a[8]===2){document.getElementById("btn1").src="windows.png";
+                         windowsWin();a[0]=2;break;}
+                     
+                     
+                     if(a[6]===2&&a[4]===2&&a[2]===0){document.getElementById("btn3").src="windows.png";
+                         windowsWin();a[2]=2;break;}
+                     if(a[6]===0&&a[4]===2&&a[2]===2){document.getElementById("btn7").src="windows.png";
+                         windowsWin();a[6]=2;break;}
+                     
+                   if(a[0]===2&&a[1]===0&&a[2]===2){document.getElementById("btn2").name="clouse";
+                        document.getElementById("btn2").src="windows.png";a[1]=2;windowsWin();break;}
+                     if(a[6]===2&&a[7]===0&&a[8]===2){document.getElementById("btn8").name="clouse";
+                         document.getElementById("btn8").src="windows.png";a[7]=2;windowsWin();break;}//по середине дырка 
+                    
+                     if(a[0]===2&&a[3]===0&&a[6]===2){document.getElementById("btn4").name="clouse";
+                         document.getElementById("btn4").src="windows.png";a[3]=2;windowsWin();break;}
+                     if(a[2]===2&&a[5]===0&&a[8]===2){document.getElementById("btn6").name="clouse";
+                         document.getElementById("btn6").src="windows.png";a[5]=2;windowsWin();break;}//по серидине дырка вертикаль
+                     
+                    
+                    //Все IF внизу не дают проиграть,проверяя нет ли у игрока
+                     //двух подряд значков
+                     
+                    if(a[0]===1&&a[1]===1&&a[2]===0){document.getElementById("btn3").name="clouse";
+                        document.getElementById("btn3").src="windows.png";a[2]=2;break;}
+                     if(a[3]===1&&a[4]===1&&a[5]===0){document.getElementById("btn6").name="clouse";
+                         document.getElementById("btn6").src="windows.png";a[5]=2;break;}
+                     if(a[6]===1&&a[7]===1&&a[8]===0){document.getElementById("btn9").name="clouse";
+                         document.getElementById("btn9").src="windows.png";a[8]=2;break;}
+                     
+                     
+                     if(a[1]===1&&a[2]===1&&a[0]===0){document.getElementById("btn1").name="clouse";
+                         document.getElementById("btn1").src="windows.png";a[0]=2;break;}
+                     if(a[4]===1&&a[5]===1&&a[3]===0){document.getElementById("btn4").name="clouse";
+                         document.getElementById("btn4").src="windows.png";a[3]=2;break;}
+                     if(a[8]===1&&a[7]===1&&a[6]===0){document.getElementById("btn7").name="clouse";
+                         document.getElementById("btn7").src="windows.png";a[6]=2;break;}
+                     
+                     if(a[0]===1&&a[3]===1&&a[6]===0){document.getElementById("btn7").name="clouse";
+                         document.getElementById("btn7").src="windows.png";a[6]=2;break;}
+                     if(a[1]===1&&a[4]===1&&a[7]===0){document.getElementById("btn8").name="clouse";
+                         document.getElementById("btn8").src="windows.png";a[7]=2;break;}
+                     if(a[2]===1&&a[5]===1&&a[8]===0){document.getElementById("btn9").name="clouse";
+                         document.getElementById("btn9").src="windows.png";a[8]=2;break;}
+                     
+                     
+                     if(a[0]===0&&a[3]===1&&a[6]===1){document.getElementById("btn1").name="clouse";
+                         document.getElementById("btn1").src="windows.png";a[0]=2;break;}
+                     if(a[1]===0&&a[4]===1&&a[7]===1){document.getElementById("btn2").name="clouse";
+                         document.getElementById("btn2").src="windows.png";a[1]=2;break;}
+                     if(a[2]===0&&a[5]===1&&a[8]===1){document.getElementById("btn3").name="clouse";
+                         document.getElementById("btn3").src="windows.png";a[2]=2;break;}
+                     
+                     
+                     if(a[0]===1&&a[4]===1&&a[8]===0){document.getElementById("btn9").name="clouse";
+                         document.getElementById("btn9").src="windows.png";a[8]=2;break;}
+                     if(a[0]===0&&a[4]===1&&a[8]===1){document.getElementById("btn1").name="clouse";
+                         document.getElementById("btn1").src="windows.png";a[0]=2;break;}//по диагонали
+                     
+                     
+                     if(a[6]===1&&a[4]===1&&a[2]===0){document.getElementById("btn3").name="clouse";
+                         document.getElementById("btn3").src="windows.png";a[2]=2;break;}
+                     if(a[6]===0&&a[4]===1&&a[2]===1){document.getElementById("btn7").name="clouse";
+                         document.getElementById("btn7").src="windows.png";a[6]=2;break;}//по диагонали
+                     
+                     if(a[0]===1&&a[1]===0&&a[2]===1){document.getElementById("btn2").name="clouse";
+                        document.getElementById("btn2").src="windows.png";a[1]=2;break;}
+                     if(a[6]===1&&a[7]===0&&a[8]===1){document.getElementById("btn8").name="clouse";
+                         document.getElementById("btn8").src="windows.png";a[7]=2;break;}//по середине дырка 
+                    
+                     if(a[0]===1&&a[3]===0&&a[6]===1){document.getElementById("btn4").name="clouse";
+                         document.getElementById("btn4").src="windows.png";a[3]=2;break;}
+                     if(a[2]===1&&a[5]===0&&a[8]===1){document.getElementById("btn6").name="clouse";
+                         document.getElementById("btn6").src="windows.png";a[5]=2;break;}//по серидине дырка вертикаль
+                     
+                     
+                     if(a[3]===1&&a[0]===0&&a[1]===1){document.getElementById("btn1").name="clouse";
+                         document.getElementById("btn1").src="windows.png";a[0]=2;break;}
+                     if(a[1]===1&&a[2]===0&&a[5]===1){document.getElementById("btn3").name="clouse";
+                         document.getElementById("btn3").src="windows.png";a[2]=2;break;}//
+                     if(a[5]===1&&a[8]===0&&a[7]===1){document.getElementById("btn9").name="clouse";
+                         document.getElementById("btn9").src="windows.png";a[8]=2;break;}
+                     if(a[7]===1&&a[6]===0&&a[3]===1){document.getElementById("btn7").name="clouse";
+                         document.getElementById("btn7").src="windows.png";a[6]=2;break;}//дырка в углу
+                     
+                    
+                
+                //цикл на случай рамдоного хода
+                while(countStep<5){
+                var rand = Math.random()*(8-0)+0;
+                rand=Math.round(rand);
+                if(a[rand]===0){
+                    document.getElementById("btn"+(rand+1)).name="clouse";
+                    document.getElementById("btn"+(rand+1)).src="windows.png";a[rand]=2;break;
+                }
+            }
+                    break;
+                    
+                }
+                
+               }
+           }
+                
+        }
+            }
+        </script>
+        //скрипт звука
+        <script type="text/javascript">
+            
+            function wav(){
+                var audio = new Audio();
+                audio.src="Wav.wav";
+                document.getElementById("divAudio").innerHTML="<audio src=\"Wav.wav\" autoplay></audio>";
+            }
+            function windowsWin(){
+                var audio = new Audio();
+                audio.src="Xp.mp3";
+                document.getElementById("divAudio").innerHTML="<audio src=\"Xp.mp3\" autoplay></audio>";
+                document.getElementById("btn1").name="clouse";
+                document.getElementById("btn2").name="clouse";
+                document.getElementById("btn3").name="clouse";
+                document.getElementById("btn4").name="clouse";
+                document.getElementById("btn5").name="clouse";
+                document.getElementById("btn6").name="clouse";
+                document.getElementById("btn7").name="clouse";
+                document.getElementById("btn8").name="clouse";
+                document.getElementById("btn9").name="clouse";
+               setTimeout(function (){
+                document.getElementById("btn1").src="windows.png";
+                document.getElementById("btn2").src="windows.png";
+                document.getElementById("btn3").src="windows.png";
+                document.getElementById("btn4").src="windows.png";
+                document.getElementById("btn5").src="windows.png";
+                document.getElementById("btn6").src="windows.png";
+                document.getElementById("btn7").src="windows.png";
+                document.getElementById("btn8").src="windows.png";
+                document.getElementById("btn9").src="windows.png";}, 1000);
+            }
+            function ubuntuWin(){
+                var audio2 = new Audio();
+                audio2.src="ubuntu.wav";
+                document.getElementById("divAudio").innerHTML="<audio src=\"ubuntu.wav\" autoplay></audio>";
+                document.getElementById("btn1").src="ubuntu.png";
+                document.getElementById("btn1").name="clouse";
+                document.getElementById("btn2").src="ubuntu.png";
+                document.getElementById("btn2").name="clouse";
+                document.getElementById("btn3").src="ubuntu.png";
+                document.getElementById("btn3").name="clouse";
+                document.getElementById("btn4").src="ubuntu.png";
+                document.getElementById("btn4").name="clouse";
+                document.getElementById("btn5").src="ubuntu.png";
+                document.getElementById("btn5").name="clouse";
+                document.getElementById("btn6").src="ubuntu.png";
+                document.getElementById("btn6").name="clouse";
+                document.getElementById("btn7").src="ubuntu.png";
+                document.getElementById("btn7").name="clouse";
+                document.getElementById("btn8").src="ubuntu.png";
+                document.getElementById("btn8").name="clouse";
+                document.getElementById("btn9").src="ubuntu.png";
+                document.getElementById("btn9").name="clouse";
+            }
+        </script>
+    </body>
+</html>
