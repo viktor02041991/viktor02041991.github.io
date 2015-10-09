@@ -30,20 +30,20 @@ form{
 }
 
 .KP{
-    margin-left: 2%;
+    margin-left: 5%;
     outline: none;
-        height: 20%;
-    width: 20%;
+        height: 30%;
+    width: 30%;
 }
 .KL{
     margin-left: 2%;
     outline: none;
-        height: 22%;
-    width: 22%;
+        height: 60%;
+    width: 60%;
 }
 .KR{
      margin-left: 2%;
     outline: none;
-        height: 2%;
-    width: 2%;
+        height: 6%;
+    width: 6%;
 }
