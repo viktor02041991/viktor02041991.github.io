@@ -27,7 +27,26 @@ and open the template in the editor.
             <input class="KN" type="image" id="btn7" name="btn7"  src="quest.png" onclick="push(this)">
             <input class="KN" type="image" id="btn8" name="btn8" src="quest.png"  onclick="push(this)">
             <input class="KN" type="image" id="btn9" name="btn9"  src="quest.png" onclick="push(this)">
+            
+            <input type="button" id="btnsmena" name="btnsmena" onclick="smena()"> 
         </form>
+        <script type="text/javascript">
+                function smena(){
+                     document.getElementById("btn1").className="KP";
+                     document.getElementById("btn2").className="KP";
+                     document.getElementById("btn3").className="KP";
+                     document.getElementById("btn4").className="KP";
+                     document.getElementById("btn5").className="KP";
+                     document.getElementById("btn6").className="KP";
+                     document.getElementById("btn7").className="KP";
+                     document.getElementById("btn8").className="KP";
+                     document.getElementById("btn9").className="KP";
+                    document.getElementById("title").className="KL";
+                    
+                    document.getElementById("restart").className="KR";
+
+                }
+            </script>
         
 <iframe name="myIFR" style="display: none"></iframe>
         
