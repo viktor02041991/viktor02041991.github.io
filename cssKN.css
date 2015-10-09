@@ -7,9 +7,13 @@ and open the template in the editor.
     Created on : 08.10.2015, 9:28:11
     Author     : viktor
 */
-body{
+.BB{
     background: black;
     margin-left: 25%;
+}
+.BM{
+    background: black;
+    margin-left: 0%;
 }
 #title{
     margin-left: 0%;
@@ -28,8 +32,8 @@ form{
 .KP{
     margin-left: 2%;
     outline: none;
-        height: 10%;
-    width: 10%;
+        height: 5%;
+    width: 5%;
 }
 .KL{
     margin-left: 2%;
