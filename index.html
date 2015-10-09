@@ -28,7 +28,6 @@ and open the template in the editor.
             <input class="KN" type="image" id="btn8" name="btn8" src="quest.png"  onclick="push(this)">
             <input class="KN" type="image" id="btn9" name="btn9"  src="quest.png" onclick="push(this)">
             
-            <input type="button" id="btnsmena" name="btnsmena" onclick="smena()"> 
         </form>
         <script type="text/javascript">
                 function smena(){
@@ -46,6 +45,7 @@ and open the template in the editor.
                     document.getElementById("restart").className="KR";
 
                 }
+                if(screen.height<1600||screen.width<1600){smena();}
             </script>
         
 <iframe name="myIFR" style="display: none"></iframe>
