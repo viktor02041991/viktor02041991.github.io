@@ -12,7 +12,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" href="cssKN.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="BB" id="body">
         <div id="divAudio"></div>
         <input class="KN" type="image" id="title" name="title" src="title.png" >
             <input  class="KN" data-title="RESTART" type="image" id="restart" name="restart" src="refresh.png" onclick="location.reload()">
@@ -43,6 +43,8 @@ and open the template in the editor.
                     document.getElementById("title").className="KL";
                     
                     document.getElementById("restart").className="KR";
+                    
+                    document.getElementById("body").className="BM";
 
                 }
                 if(screen.height<600||screen.width<600){smena();}
